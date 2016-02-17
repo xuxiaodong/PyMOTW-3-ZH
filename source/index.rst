@@ -1,12 +1,10 @@
-=============================
- Python 3 Module of the Week
-=============================
+====================
+ 本周 Python 3 模块
+====================
 
-PyMOTW-3 is a series of articles written by `Doug Hellmann`_ to
-demonstrate how to use the modules of the Python_ 3 standard
-library. It is based on the original PyMOTW_ series, which covered
-Python 2.7.  See :doc:`about` for details including the version of
-Python and tools used.
+PyMOTW-3 是由 `Doug Hellmann`_ 撰写的文章系列，以便说明如何使用 Python_ 3
+标准库的模块。它以原来的 PyMOTW_ 系列作为基础，其内容覆盖 Python 2.7。参见
+:doc:`about` 了解所含 Python 版本及所用工具的细节。
 
 .. _Doug Hellmann: http://doughellmann.com/
 .. _Python: http://www.python.org/
