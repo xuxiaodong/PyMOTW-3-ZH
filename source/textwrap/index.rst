@@ -1,41 +1,34 @@
-=========================================
- textwrap --- Formatting Text Paragraphs
-=========================================
+=============================
+ textwrap --- 格式化文本段落 
+=============================
 
 .. module:: textwrap
-    :synopsis: Formatting text paragraphs
+    :synopsis: 格式化文本段落
 
-:Purpose: Formatting text by adjusting where line breaks occur in a paragraph.
+:用途: 通过调整换行符在段落中出现的位置来格式化文本。
 
-The :mod:`textwrap` module can be used to format text for output in
-situations where pretty-printing is desired. It offers programmatic
-functionality similar to the paragraph wrapping or filling features
-found in many text editors and word processors.
+:mod:`textwrap` 模块用于将输出的文本格式化为期望的漂亮打印场合。它提供可在很多文本编辑器及文字处理器中找到的类似于换行或填充段落这样的程序功能。
 
-Example Data
-============
+样例数据
+========
 
-The examples in this section use the module ``textwrap_example.py``,
-which contains a string ``sample_text``.
+本节中的样例使用包含字符串 ``sample_text`` 的模块 ``textwrap_example.py`` 。
 
 .. literalinclude:: textwrap_example.py
     :caption:
     :start-after: #end_pymotw_header
 
 
-Filling Paragraphs
-==================
+填充段落
+========
 
-The :func:`fill` function takes text as input and produces formatted
-text as output.
+:func:`fill` 函数将文本作为输入，并产生输出格式化的文本。
 
 .. literalinclude:: textwrap_fill.py
     :caption:
     :start-after: #end_pymotw_header
 
-The results are something less than desirable.  The text is now left
-justified, but the first line retains its indent and the spaces from
-the front of each subsequent line are embedded in the paragraph.
+结果有点小于期望。虽然文本现在左对齐，但是首行保留了缩进，而且每个序列行前面的空格都被嵌入到了段落中。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'textwrap_fill.py'))
@@ -56,23 +49,16 @@ the front of each subsequent line are embedded in the paragraph.
 .. {{{end}}}
 
 
-Removing Existing Indentation
-=============================
+移除现有的缩进
+==============
 
-The previous example has embedded tabs and extra spaces mixed into the
-middle of the output, so it is not formatted very cleanly. Removing
-the common whitespace prefix from all of the lines in the sample text
-with :func:`dedent` produces better results and allows the use of
-docstrings or embedded multi-line strings straight from Python code
-while removing the formatting of the code itself. The sample string
-has an artificial indent level introduced for illustrating this
-feature.
+因为先前的样例嵌入了制表符和额外的空格混合到输出中间，所以格式化得很不齐整。利用 :func:`dedent` 移除样例文本中所有行的常见空白将产生更好的结果。同时，当移除 Python 代码的格式时，可以直接使用文档字符串或嵌入的多行字符串。为了说明该功能，样例字符串引入了人造的缩进层次。
 
 .. literalinclude:: textwrap_dedent.py
     :caption:
     :start-after: #end_pymotw_header
 
-The results are starting to look better.
+结果看起来更好。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'textwrap_dedent.py'))
@@ -92,12 +78,9 @@ The results are starting to look better.
 
 .. {{{end}}}
 
-Since "dedent" is the opposite of "indent", the result is a block of
-text with the common initial whitespace from each line removed. If one
-line is already indented more than another, some of the whitespace
-will not be removed.
+由于“dedent”是“indent”的反面，所以结果移除了文本块每行开头共同的空白。如果一行已经缩进了多次，那么不会移除某些空白。
 
-Input like
+像这样的输入
 
 ::
 
@@ -105,7 +88,7 @@ Input like
   ␣␣␣Line two.
   ␣Line three.
 
-becomes
+将变成
 
 ::
 
@@ -113,18 +96,17 @@ becomes
   ␣␣Line two.
   Line three.
 
-Combining Dedent and Fill
-=========================
+组合取消缩进和填充
+==================
 
-Next, the dedented text can be passed through :func:`fill` with a
-few different *width* values.
+下面，利用几个不同的 *宽度* 值将取消缩进的文本传到 :func:`fill` 。
 
 .. literalinclude:: textwrap_fill_width.py
     :caption:
     :start-after: #end_pymotw_header
 
 
-This produces outputs in the specified widths.
+这将使用指定的宽度产生输出。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'textwrap_fill_width.py'))
@@ -153,21 +135,16 @@ This produces outputs in the specified widths.
 
 .. {{{end}}}
 
-Indenting Blocks
-================
+缩进块
+======
 
-Use the :func:`indent` function to add consistent prefix text to all
-of the lines in a string. This example formats the same example text
-as though it was part of an email message being quoted in the reply,
-using ``>`` as the prefix for each line.
+使用 :func:`indent` 函数将前缀文本一致地添加到字符串的所有行。本例利用 ``>`` 作为每行的前缀，将同样的示例文本格式化成引用回复邮件消息的一部分。
 
 .. literalinclude:: textwrap_indent.py
    :caption:
    :start-after: #end_pymotw_header
 
-The block of text is split on newlines, the prefix is added to each
-line that contains text, and then the lines are combined back into a
-new string and returned.
+文本块在换行时分割，添加前缀到包含文本的每一行，然后这些行被合并成新的字符串并返回。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'textwrap_indent.py'))
@@ -189,17 +166,13 @@ new string and returned.
 
 .. {{{end}}}
 
-To control which lines receive the new prefix, pass a callable as the
-predicte argument to :func:`indent`. The callable will be invoked for
-each line of text in turn and the prefix will be added for lines where
-the return value is true.
+要控制哪行得到新的前缀，将可调函数作为断言参数传递给 :func:`indent` 。可调函数将在每个文本行被调用，并将前缀添加到返回值为真的行。
 
 .. literalinclude:: textwrap_indent_predicate.py
    :caption:
    :start-after: #end_pymotw_header
 
-This example adds the prefix ``EVEN`` to lines that contain an even
-number of characters.
+本例将前缀 ``EVEN`` 添加到有偶数字符的行。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'textwrap_indent_predicate.py'))
@@ -225,18 +198,16 @@ number of characters.
 
 .. {{{end}}}
 
-Hanging Indents
-===============
+悬挂缩进
+========
 
-Just as the width of the output can be set, the indent of the first
-line can be controlled independently of subsequent lines.
+正如可以设置输出宽度一样，序列行跟首行缩进也能被独立控制。
 
 .. literalinclude:: textwrap_hanging_indent.py
     :caption:
     :start-after: #end_pymotw_header
 
-This makes it possible to produce a hanging indent, where the
-first line is indented less than the other lines.
+这将产生悬挂缩进，首行缩进比其他行小。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'textwrap_hanging_indent.py'))
@@ -254,28 +225,18 @@ first line is indented less than the other lines.
 
 .. {{{end}}}
 
-The indent values can include nonwhitespace characters, too. The
-hanging indent can be prefixed with ``*`` to produce bullet points,
-etc.
+缩进值也可以包含非空白字符。悬挂缩进可以利用前缀 ``*`` 产生项目符号。
 
-Truncating Long Text
-====================
+截断长文本
+==========
 
-To truncate text to create a summary or preview, use
-:func:`shorten`. All existing whitespace such as tabs, newlines, and
-series of multiple spaces will be standardized to a single space. Then
-the text will be truncated to a length less than or equal to what is
-requested, between word boundaries so that no partial words are
-included.
+要截断文本来创建摘要或预览，可以使用 :func:`shorten` 。诸如制表符、换行符、以及连续的多个空格等所有现存的空白都将被标准化为单一的空格。然后，文本被截断成小于或等于请求的长度，单词边界之间不会含有部分的单词。
 
 .. literalinclude:: textwrap_shorten.py
    :caption:
    :start-after: #end_pymotw_header
 
-If non-whitespace text is removed from the original text as part of
-the truncation, it is replaced with a placeholder value. The default
-value ``[...]`` can be replaced by providing a ``placeholder``
-argument to :func:`shorten`.
+如果非空白文本从原文移除，那么它将使用占位符替换。可以通过提供 :func:`shorten` ``placeholder`` 参数来替换默认值 ``[...]``。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'textwrap_shorten.py'))
